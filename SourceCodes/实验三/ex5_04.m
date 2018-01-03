@@ -1,0 +1,16 @@
+f=[120 40 40 40 40 40]
+a=[1;1;1/2;1/2;1;1;1;1];
+s1=sparse(1:5,1:5,ones(1,5),8,5,5);
+s2=sparse(2:6,1:5,ones(1,5),8,5,5);
+s3=sparse(3:7,1:5,ones(1,5),8,5,5);
+s4=sparse(4:8,1:5,ones(1,5),8,5,5);
+s=s1+s2+s3+s4;
+b=full(s);
+A=-[a,b]
+B=-[10 12 14 16 18 17 15 10]
+I = [1:length(f)]
+Aeq=[];
+Beq=[];
+lb=[9.1,zeros(1,5)];
+ub=[11.9,10000000*ones(1,5)];
+[x,fval,status] = intprog(f,A,B,I,Aeq,Beq,lb,ub)
